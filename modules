@@ -1,0 +1,342 @@
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/temperature]
+type = internal/temperature
+
+format = <ramp> <label> 
+format-background = ${color.black}
+format-padding = 1
+format-foreground = ${color.font}
+
+label = %temperature%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-font = 3
+ramp-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/volume]
+type = internal/pulseaudio
+
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+use-ui-max = false
+
+interval = 5
+
+format-volume = <ramp-volume><label-volume>
+
+format-muted = <label-muted>
+format-muted-prefix = " "
+format-muted-prefix-font = 2
+format-muted-prefix-foreground = ${color.font}
+format-muted-prefix-background = ${color.black}
+
+label-volume = "%percentage%% "
+label-muted = "Mute"
+
+label-volume-background = ${color.black}
+label-muted-background = ${color.black}
+
+label-volume-foreground = ${color.font}
+label-muted-foreground = ${color.font}
+
+ramp-volume-0 = "  "
+ramp-volume-1 = "  "
+ramp-volume-2 = "  "
+ramp-volume-3 = "  "
+ramp-volume-4 = "  "
+ramp-volume-5 = "  "
+ramp-volume-6 = "  "
+ramp-volume-7 = "  "
+ramp-volume-8 = "  "
+ramp-volume-9 = "  "
+ramp-volume-font = 3
+ramp-volume-foreground = ${color.red}
+ramp-volume-background = ${color.black}
+
+ramp-headphones-0 = 
+ramp-headphones-1 = 
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+battery = ${system.battery}
+adapter = ${system.adapter}
+
+poll-interval = 2
+time-format = %H:%M
+
+format-charging = <animation-charging><label-charging>
+format-charging-prefix = 
+
+format-discharging = <ramp-capacity><label-discharging>
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-font = 3
+format-full-prefix-foreground = ${color.font}
+format-full-prefix-background = ${color.black}
+
+label-charging = "%percentage%% "
+label-discharging = "%percentage%% "
+label-full = "%percentage%% "
+
+label-charging-background = ${color.black}
+label-discharging-background = ${color.black}
+label-full-background = ${color.black}
+
+label-charging-foreground = ${color.font}
+label-discharging-foreground = ${color.font}
+label-full-foreground = ${color.font}
+
+ramp-capacity-0 = " "
+ramp-capacity-1 = " "
+ramp-capacity-2 = " "
+ramp-capacity-3 = " "
+ramp-capacity-4 = " "
+ramp-capacity-font = 3
+ramp-capacity-foreground = ${color.red}
+ramp-capacity-background = ${color.black}
+
+animation-charging-0 = " "
+animation-charging-1 = " "
+animation-charging-2 = " "
+animation-charging-3 = " "
+animation-charging-4 = " "
+animation-charging-font = 3
+animation-charging-foreground = ${color.red}
+animation-charging-background = ${color.black}
+animation-charging-framerate = 750
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+[module/bspwm]
+type = internal/xworkspaces
+pin-workspaces = true
+inline-mode = false
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+fuzzy-match = true
+
+
+label-active = %icon% %name%
+label-active-foreground = #5A843E
+label-active-background = ${color.black}
+label-active-padding = 1
+
+label-focused = %name%
+label-focused-foreground = ${color.red}
+label-focused-background = ${color.black}
+label-focused-overline =  ${color.red}
+label-focused-padding = 1
+label-focused-underline = ${color.red}
+
+label-occupied-background = ${color.black}
+label-occupied-foreground = #424A4B
+label-occupied-padding = 1
+
+label-empty-background = ${color.black}
+label-empty-foreground = ${color.font}
+label-empty-padding = 1
+
+; Separator in between workspaces
+label-separator = " "
+label-separator-padding = 0
+label-separator-foreground = ${color.font} 
+label-separator-background = ${color.black} 
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "  "
+format-prefix-font = 3
+format-prefix-foreground = ${color.red}
+format-foreground = ${color.font}
+format-background = ${color.black}
+label = "%{A1:terminal -e gtop &:}%percentage%% %{A}"
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/time]
+type = internal/date
+interval = 1
+format-margin = 0
+time = "%I:%M %p"
+time-alt = "%A, %m/%d/%y"
+
+format-prefix = " "
+format-prefix-font = 3
+format-prefix-foreground = ${color.black}
+format-prefix-background = ${color.red}
+
+label = %time%
+label-foreground = ${color.black}
+label-background = ${color.red}
+label-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/date]
+type = internal/date
+interval = 1
+format-margin = 0
+time = "%A, %d"
+time-alt = "%A, %m/%d/%y"
+
+format-prefix = 
+format-prefix-font = 3
+format-prefix-foreground = ${color.red}
+format-prefix-background = ${color.black}
+
+label = %time%
+label-foreground = ${color.font}
+label-background = ${color.black}
+label-padding = 1
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+interval = 30
+fixed-values = true
+
+format-mounted = <label-mounted>
+format-mounted-prefix = ""
+format-mounted-prefix-font = 3
+format-mounted-prefix-foreground = ${color.black}
+format-mounted-prefix-background = ${color.red}
+
+format-unmounted = <label-unmounted>
+format-unmounted-prefix = " "
+format-unmounted-prefix-foreground = ${color.black}
+format-unmounted-prefix-background = ${color.red}
+
+label-mounted = "%{A1:terminal -e ncdu &:} %free%%{A}"
+label-unmounted = " %mountpoint%: NA"
+label-mounted-foreground = ${color.black}
+
+label-mounted-background = ${color.red}
+label-unmounted-background = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/launcher]
+type=custom/text
+content = 
+content-font = 1
+content-foreground= ${color.black}
+content-background = ${color.red} 
+content-padding = 1
+click-left=j4-dmenu
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/wired-network]
+type = internal/network
+interface = ${system.network_interface}
+
+[module/wireless-network]
+type = internal/network
+interface = ${system.network_interface}
+
+[module/network]
+type = internal/network
+;interface = ${system.network_interface}
+interface = wlp3s0
+
+interval = 1.0
+accumulate-stats = true
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = "睊 "
+format-disconnected-prefix-font = 3
+format-disconnected-foreground = ${color.black}
+format-disconnected-background = ${color.red}
+
+label-connected = "%{A1:def-nmdmenu &:}%essid%%{A}"
+label-disconnected = "%{A1:def-nmdmenu &:}Offline%{A}"
+
+label-connected-foreground = ${color.black}
+label-disconnected-foreground = ${color.black}
+
+label-connected-background = ${color.red}
+label-disconnected-background = ${color.red}
+
+ramp-signal-0 = " "
+ramp-signal-1 = " "
+ramp-signal-2 = " "
+ramp-signal-3 = " "
+ramp-signal-4 = " "
+ramp-signal-foreground = ${color.black}
+ramp-signal-background = ${color.red}
+ramp-signal-font = 3
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/brightness/
+card = intel_backlight
+
+use-actual-brightness = true
+
+enable-scroll = true
+
+format = <ramp> <label>
+format-background = ${color.black}
+format-padding = 0
+
+label =%percentage%%
+label-foreground = ${color.font}
+
+ramp-0 =
+ramp-1 =
+ramp-2 =
+ramp-3 =
+ramp-4 =
+ramp-5 =
+ramp-6 =
+ramp-7 =
+ramp-8 =
+ramp-9 =
+ramp-font = 3
+ramp-foreground = ${color.red}
+
+;; _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_
+
+[module/mpd]
+type = internal/mpd
+label-song-background = ${color.black}
+
+host = 127.0.0.1
+port = 6601
+
+; Default: 1
+interval = 2
+
+format-online = <label-song> 
+
+
+icon-prev = 
+icon-stop = 
+icon-play = 
